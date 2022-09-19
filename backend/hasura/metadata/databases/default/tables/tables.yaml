@@ -1,0 +1,4 @@
+- "!include public_admins.yaml"
+- "!include public_doctors.yaml"
+- "!include public_patients.yaml"
+- "!include public_recieptionists.yaml"
