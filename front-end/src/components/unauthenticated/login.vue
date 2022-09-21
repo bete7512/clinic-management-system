@@ -23,11 +23,6 @@
                             <div class="text-red-700">{{errors.password}}</div>
                         </div>
                     </div>
-                    <div class="border-2"><select v-model="roles" id="">
-                        <option value="admins">admins</option>
-                        <option value="doctors">doctors</option>
-                        <option value="recieptionists">recieptionists</option>
-                    </select></div>
                     <div class="text-red-600">{{loginreturn}}</div>
                     <div class="pt-2">
                         <button  type="submit"
@@ -58,8 +53,8 @@
 <script setup >
 import { Form, Field } from 'vee-validate';
 import * as Yup from 'yup';
-import router from '@/router/index.ts'
-// import { userStore } from '@/stores/userstore.js';
+import router from '@/router/index'
+import { userStore } from '@/stores/userstore';
 import { ref } from 'vue'
 import { defineEmits } from 'vue';
 const username = ref('')
@@ -75,15 +70,15 @@ const emit = defineEmits(['loginSuccess','successfulllogin'])
 const emitlogin = (event) => {
     emit('loginSuccess')
 }
-// const user = useStore()
+const user = userStore()
 
-const roles = ref('recieptionsits')
+const roles = ref('recieptionists')
 const loginprocess = ref(false)
 let loginreturn = ref('')
 const onSubmit = async () => {
     try {
             loginprocess.value = true
-            // loginreturn.value = await user.login(username.value, password.value)
+            loginreturn.value = await user.login(username.value, password.value,roles.value)
             emit('loginSuccess')
             emit('successfulllogin')
             loginprocess.value = false

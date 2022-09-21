@@ -2,6 +2,11 @@ const express = require('express')
 require('dotenv').config()
 const app = express();
 app.use(express.json({ limit: '200mb' }));
+app.get('/',(req,res)=>{
+  res.json({
+    success:"wellcome"
+  })
+})
 app.post('/:route', (req, res) => {
   try {
     const handler = require(`./handler/${req.params.route}`);
@@ -18,8 +23,7 @@ app.post('/:route', (req, res) => {
     })
   }
 })
-app.listen(3002,
+app.listen(3000,
   () => {
     console.log("on the moon")
-  }
-);
+  });

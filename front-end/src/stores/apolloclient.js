@@ -11,6 +11,9 @@ const httpLink = createHttpLink({
     uri:'http://localhost:8080/v1/graphql',
     fetch,
     headers:getHeaders()
+    // headers:{
+    //   'x-hasura-admin-secret':'myadminsecretkey'
+    // }
 })
 
 const apolloclient = new ApolloClient({

@@ -7,16 +7,16 @@ insert_permissions:
       check: {}
       columns:
         - address
-        - disease
+        - health_num
         - name
-        - phone
         - p_id
+        - phone
   - role: doctors
     permission:
       check: {}
       columns:
         - address
-        - disease
+        - health_num
         - name
         - phone
         - p_id
@@ -24,26 +24,26 @@ insert_permissions:
     permission:
       check: {}
       columns:
-        - address
-        - disease
+        - p_id
         - name
         - phone
-        - p_id
+        - address
+        - health_num
 select_permissions:
   - role: admins
     permission:
       columns:
         - address
-        - disease
+        - health_num
         - name
-        - phone
         - p_id
+        - phone
+        - registered_at
       filter: {}
   - role: doctors
     permission:
       columns:
         - address
-        - disease
         - name
         - phone
         - p_id
@@ -52,30 +52,31 @@ select_permissions:
     permission:
       columns:
         - address
-        - disease
+        - health_num
         - name
-        - phone
         - p_id
+        - phone
+        - registered_at
       filter: {}
 update_permissions:
   - role: admins
     permission:
       columns:
         - address
-        - disease
         - name
         - phone
         - p_id
       filter: {}
-      check: null
+      check: {}
   - role: doctors
     permission:
       columns:
-        - disease
+        - address
         - name
+        - phone
         - p_id
       filter: {}
-      check: null
+      check: {}
 delete_permissions:
   - role: admins
     permission:

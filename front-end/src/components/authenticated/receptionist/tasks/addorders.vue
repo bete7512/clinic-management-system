@@ -88,8 +88,6 @@ const schema = Yup.object().shape({
     health_num: Yup.string().min(4, 'health number is 4 digit').required('health number is required')
 })
 const emit = defineEmits(['successadded'])
-
-// const user = useStore()
 const patient = patientStore()
 const {error,loding,result}= useQuery(gql`
 query MyQuery {
@@ -113,7 +111,6 @@ const onSubmit = async () => {
     console.log("something from here");
     try {
         loginprocess.value = true
-        // addpatient()
         await patient.addpatient({
                         name: name.value,
                         phone:phone.value,
@@ -121,7 +118,6 @@ const onSubmit = async () => {
                         health_num:health_num.value,
                         p_id: uuidv4()
                     })
-        // loginreturn.value = await user.login(username.value, password.value)
         emit('successadded')
         loginprocess.value = false
     }
@@ -141,13 +137,6 @@ const { muate: addpatient } = useMutation(
             p_id: uuidv4()
         }
     })
-    // ()=>({variables:{
-    //     health_num:health_num.value,
-    //     phone:phone.value,
-    //     address:address.value,
-    //     name:name.value
-    //     p_id:uuidv4()
-    // }})
 )
 </script>
 <style>

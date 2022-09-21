@@ -21,6 +21,7 @@ select_permissions:
         - speciality
         - d_id
       filter: {}
+      allow_aggregations: true
   - role: doctors
     permission:
       columns:
@@ -49,7 +50,7 @@ update_permissions:
         - speciality
         - d_id
       filter: {}
-      check: null
+      check: {}
 delete_permissions:
   - role: admins
     permission:

@@ -26,11 +26,11 @@
                         <div class="text-red-700">{{errors.address}}</div>
                     </div>
                     <div class="space-y-3">
-                        <label>Health number</label>
-                        <Field name="health_num" type="text" v-model="health_num" placeholder="Enter health number"
+                        <label>speciality</label>
+                        <Field name="speciality" type="text" v-model="speciality" placeholder="Enter health number"
                             class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                            :class="{ 'is-invalid': errors.health_num }" />
-                        <div class="text-red-700">{{errors.health_num}}</div>
+                            :class="{ 'is-invalid': errors.speciality }" />
+                        <div class="text-red-700">{{errors.speciality}}</div>
                     </div>
                 </div>
                 <div class="text-red-600">{{loginreturn}}</div>
@@ -40,7 +40,6 @@
                         <div v-if="loginprocess" class="text-2xl">
                             <svg role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
-
                                 <path
                                     d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
                                     fill="#E5E7EB" />
@@ -51,33 +50,25 @@
                             signing...
                         </div>
                         <div v-else>
-                            Sign in
+                            register
                         </div>
                     </button>
                 </div>
             </Form>
         </div>
     </div>
-    <div>{{variables.name}}</div>
-    <div v-if="error">fvgbjhnklm</div>
-    <div v-if="loading">dgchbnj</div>
-    <div v-else>here{{result}}</div>
 </template>
 <script setup>
-import { v4 as uuidv4 } from 'uuid';
 import { Form, Field } from 'vee-validate';
 import * as Yup from 'yup';
-import router from '@/router/index'
-import { useMutation, useQuery } from '@vue/apollo-composable';
-import { ref,reactive } from 'vue'
+import router from '@/router/index.ts'
+import { userStore } from '@/stores/userstore.js';
+import { ref } from 'vue'
 import { defineEmits } from 'vue';
-import { add_patients } from '@/tools/query'
-import gql from 'graphql-tag';
-import {patientStore} from '@/stores/patientStore'
 const name = ref('')
 const phone = ref('')
 const address = ref('')
-const health_num = ref('')
+const speciality=ref('')
 const schema = Yup.object().shape({
     name: Yup.string()
         .required('patient name is required'),
@@ -85,70 +76,25 @@ const schema = Yup.object().shape({
         .min(9, 'phone must be 9 digit and above')
         .required('phone is required'),
     address: Yup.string().required('address is required'),
-    health_num: Yup.string().min(4, 'health number is 4 digit').required('health number is required')
+    speciality:Yup.string().required('doctors specialization is required')
 })
-const emit = defineEmits(['successadded'])
 
-// const user = useStore()
-const patient = patientStore()
-const {error,loding,result}= useQuery(gql`
-query MyQuery {
-  users {
-    roles
-  }
-}
-`)
-const roles = ref('recieptionsits')
-const loginprocess = ref(false)
-let loginreturn = ref('')
-const variables = ref({
-                        name: name.value,
-                        phone:phone.value,
-                        address:address.value,
-                        health_num:health_num.value,
-                        p_id: uuidv4()
-                    })
-console.log(variables);
+const emit = defineEmits(['successfulll'])
+const user = userStore()
+const registerprocessing = ref(false)
+const returnvalue = ref('')
 const onSubmit = async () => {
-    console.log("something from here");
     try {
-        loginprocess.value = true
-        // addpatient()
-        await patient.addpatient({
-                        name: name.value,
-                        phone:phone.value,
-                        address:address.value,
-                        health_num:health_num.value,
-                        p_id: uuidv4()
-                    })
-        // loginreturn.value = await user.login(username.value, password.value)
-        emit('successadded')
-        loginprocess.value = false
+        registerprocessing.value = true
+        user.registerdoctor({name:name.value,phone:phone.value,address:address.value,speciality:speciality.value})
+        emit('successfull')
+        registerprocessing.value = false
     }
     catch (error) {
-        loginreturn = error.message
-        loginprocess.value = false
+    returnvalue.value = error.message
+    registerprocessing.value = false
     }
 }
-const { muate: addpatient } = useMutation(
-    add_patients,
-    () => ({
-        variables: {
-            health_num: health_num.value,
-            phone: phone.value,
-            address: address.value,
-            name: name.value,
-            p_id: uuidv4()
-        }
-    })
-    // ()=>({variables:{
-    //     health_num:health_num.value,
-    //     phone:phone.value,
-    //     address:address.value,
-    //     name:name.value
-    //     p_id:uuidv4()
-    // }})
-)
 </script>
 <style>
 

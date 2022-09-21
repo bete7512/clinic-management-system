@@ -1,43 +1,35 @@
 table:
-  name: recieptionists
+  name: users
   schema: public
-insert_permissions:
-  - role: admins
-    permission:
-      check: {}
-      columns:
-        - address
-        - name
-        - phone
-        - r_id
 select_permissions:
   - role: admins
     permission:
       columns:
-        - address
+        - id
+        - isactive
         - name
-        - phone
-        - r_id
+        - password
+        - roles
+        - username
       filter: {}
       allow_aggregations: true
-  - role: doctors
+  - role: anonymous
     permission:
       columns:
-        - address
-        - name
-        - phone
-        - r_id
+        - roles
       filter: {}
 update_permissions:
   - role: admins
     permission:
       columns:
-        - address
+        - isactive
         - name
-        - phone
-        - r_id
+        - password
+        - roles
+        - username
+        - id
       filter: {}
-      check: {}
+      check: null
 delete_permissions:
   - role: admins
     permission:

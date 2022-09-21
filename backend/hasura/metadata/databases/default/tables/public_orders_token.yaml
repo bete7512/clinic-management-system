@@ -1,0 +1,54 @@
+table:
+  name: orders_token
+  schema: public
+insert_permissions:
+  - role: admins
+    permission:
+      check: {}
+      columns:
+        - queued_at
+        - order_number
+        - doctor
+        - patient
+  - role: doctors
+    permission:
+      check: {}
+      columns:
+        - queued_at
+        - order_number
+        - doctor
+        - patient
+select_permissions:
+  - role: admins
+    permission:
+      columns:
+        - queued_at
+        - order_number
+        - doctor
+        - patient
+      filter: {}
+  - role: doctors
+    permission:
+      columns:
+        - order_number
+        - patient
+        - queued_at
+      filter:
+        doctor:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+update_permissions:
+  - role: admins
+    permission:
+      columns:
+        - queued_at
+        - order_number
+        - doctor
+        - patient
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: admins
+    permission:
+      backend_only: false
+      filter: {}

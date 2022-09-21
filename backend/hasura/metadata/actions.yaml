@@ -1,6 +1,53 @@
-actions: []
+actions:
+  - name: login
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000/login
+    permissions:
+      - role: anonymous
+      - role: recieptionists
+      - role: doctors
+      - role: admins
+  - name: signupa
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000/signupa
+    permissions:
+      - role: admins
+  - name: signupd
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000/signupd
+    permissions:
+      - role: admins
+  - name: signupr
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000/signupr
+    permissions:
+      - role: admins
+  - name: updatepassword
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000/updatepassword
+    permissions:
+      - role: doctors
+      - role: recieptionists
+      - role: admins
 custom_types:
   enums: []
-  input_objects: []
-  objects: []
+  input_objects:
+    - name: loginInput
+    - name: registerInput
+    - name: updatepasswordInput
+    - name: signupdInput
+    - name: signuprInput
+    - name: signupaInput
+  objects:
+    - name: loginOutput
+    - name: registerOutput
+    - name: updatepassowrdOutput
+    - name: signupdOutput
+    - name: signuprOutput
+    - name: signupaOutput
   scalars: []

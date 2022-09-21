@@ -1,38 +1,42 @@
 import { defineStore } from 'pinia'
-import { register, signin, user_profile_query } from '@/tools/queries';
+import { login,register_doctors,register_recieptionist } from '@/tools/query';
 import { provideApolloClient } from '@vue/apollo-composable';
 import apolloClient from './apolloclient'
 import router from '../router/index'
 provideApolloClient(apolloClient);
-
-export const useStore = defineStore("user", {
+export const userStore = defineStore("user", {
     state: () => ({
         username: '',
-        full_name:'',
         userid:'',
     }),
-    actions: {
-        async signup(fname, lname, username, email, password,) {
-            try {
-                const response = await apolloClient.mutate({
-                    mutation: register,
-                    variables: {
-                        fname: fname,
-                        lname: lname,
-                        username: username,
-                        phone: email,
-                        password: password
-                    }
-                })
-                return response.data.register.Success
-            } catch (error) {
-                return error.message
-            }
-        },
-        async login(username, password,roles){
+    actions:{
+        async registerdoctor(variables){
             try {
                 const result = await apolloClient.mutate({
-                    mutation: signin,
+                    mutation:register_doctors,
+                    variables
+                })
+                console.log(result);
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async registerrecieptionist(variables){
+            try {
+                const result = await apolloClient.mutate({
+                    mutation:register_recieptionist,
+                    variables
+                })
+                console.log(result);
+                
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async login(username, password){
+            try {
+                const result = await apolloClient.mutate({
+                    mutation: login,
                     variables: {
                         username: username,
                         password: password,
@@ -42,10 +46,12 @@ export const useStore = defineStore("user", {
                 this.username = username
                 this.userid = result.data.login.id
                 this.isauthenticated = true,
-                 await this.user_profile();
-                router.push({ name: roles });
+                console.log(result["data"]["login"]);
+                router.push({ name: result["data"]["login"]["roles"] });
+                console.log(result);
                 return
             } catch (error) {
+                console.log(error);
                 return error.message
             }
         },

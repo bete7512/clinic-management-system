@@ -1,0 +1,106 @@
+table:
+  name: history
+  schema: public
+insert_permissions:
+  - role: admins
+    permission:
+      check: {}
+      columns:
+        - diseases_name
+        - labratory_result
+        - prescription
+        - doctors
+        - h_id
+        - patients
+  - role: doctors
+    permission:
+      check: {}
+      set:
+        doctors: x-hasura-User-Id
+      columns:
+        - diseases_name
+        - doctors
+        - h_id
+        - labratory_result
+        - patients
+        - prescription
+  - role: recieptionists
+    permission:
+      check: {}
+      columns:
+        - diseases_name
+        - labratory_result
+        - prescription
+        - doctors
+        - h_id
+        - patients
+select_permissions:
+  - role: admins
+    permission:
+      columns:
+        - diseases_name
+        - labratory_result
+        - prescription
+        - doctors
+        - h_id
+        - patients
+      filter: {}
+  - role: doctors
+    permission:
+      columns:
+        - diseases_name
+        - labratory_result
+        - prescription
+        - doctors
+        - h_id
+        - patients
+      filter: {}
+  - role: recieptionists
+    permission:
+      columns:
+        - finished
+        - diagnosis_date
+        - diseases_name
+        - labratory_result
+        - prescription
+        - doctors
+        - h_id
+        - patients
+      filter:
+        finished:
+          _eq: false
+      allow_aggregations: true
+update_permissions:
+  - role: admins
+    permission:
+      columns:
+        - diseases_name
+        - labratory_result
+        - prescription
+        - doctors
+        - h_id
+        - patients
+      filter: {}
+      check: {}
+  - role: doctors
+    permission:
+      columns:
+        - diseases_name
+        - labratory_result
+        - prescription
+        - doctors
+        - h_id
+        - patients
+      filter: {}
+      check: {}
+  - role: recieptionists
+    permission:
+      columns:
+        - finished
+      filter: {}
+      check: null
+delete_permissions:
+  - role: admins
+    permission:
+      backend_only: false
+      filter: {}
