@@ -12,7 +12,7 @@
             <button @click="router.push('/')">logout</button>
         </div>
     </div>
-    <div class="h-auto">
+    <div class="h-screen">
         <router-view></router-view>
     </div>
 </template>

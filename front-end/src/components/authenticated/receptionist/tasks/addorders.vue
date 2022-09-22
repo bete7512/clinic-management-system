@@ -1,5 +1,24 @@
 <template>
-    <div class="flex justify-center items-center py-5  ">
+    <div class="w-full flex justify-center">
+        <div class=" w-1/3 flex justify-center">
+            <div class="relative w-full">
+                <div class="flex absolute inset-y-0 pt-2 items-center pl-2 justify-center pointer-events-none">
+                    <svg class="w-7 h-7 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div>
+                    <input type="text" v-model="searchvalue"
+                        class="block p-3 pl-8   w-full outline-none transition duration-700 ease-in-out focus:shadow-outline hover:w-full h-16 z-20 border-gray-900  text-sm text-gray-900 border bg-gray-50 rounded dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                        placeholder="Search" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-center items-center py-5">
         <div class="w-1/3">
             <Form class=" justify-center space-y-6 bg-cyan-400 p-10 rounded w-full  items-center  p-b-10 px-10"
                 @submit.preventDefault="onSubmit" :validation-schema="schema" v-slot="{ errors }">
@@ -48,20 +67,16 @@
                                     d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
                                     fill="currentColor" />
                             </svg>
-                            signing...
+                            registering...
                         </div>
                         <div v-else>
-                            Sign in
+                            register
                         </div>
                     </button>
                 </div>
             </Form>
         </div>
     </div>
-    <div>{{variables.name}}</div>
-    <div v-if="error">fvgbjhnklm</div>
-    <div v-if="loading">dgchbnj</div>
-    <div v-else>here{{result}}</div>
 </template>
 <script setup>
 import { v4 as uuidv4 } from 'uuid';

@@ -8,7 +8,6 @@ mutation MyMutation($name: String!, $phone: String!, $p_id: uuid!, $health_num: 
   }
 }
 `
-
 const login = gql`
 mutation MyMutation($password: String!, $username: String!) {
   login(objects: {password: $password, username: $username}) {
@@ -18,7 +17,6 @@ mutation MyMutation($password: String!, $username: String!) {
   }
 }
 `
-
 const register_doctors = gql`
 mutation MyMutation($speciality: String!, $phone: String!, $name: String!, $address: String!) {
   signupd(objects: {address: $address, name: $name, phone: $phone, speciality: $speciality}) {
@@ -26,7 +24,6 @@ mutation MyMutation($speciality: String!, $phone: String!, $name: String!, $addr
   }
 }
 `
-
 const register_admins = gql`
 mutation MyMutation($name: String!, $phone: String!, $address: String!) {
   signupa(objects: {address: $address, name: $name, phone: $phone}) {
@@ -98,21 +95,6 @@ query MyQuery {
   }
 }
 `
-const query_orders = gql`
-query MyQuery{
-  orders_token(order_by: {order: desc}) {
-    health_num
-    order
-    p_id
-    queued_at
-  }
-  orders_token_aggregate {
-    aggregate {
-      count
-    }
-  }
-}
-`
 const query_recieptionist = gql`
 query MyQuery {
   recieptionists {
@@ -172,5 +154,23 @@ mutation MyMutation($health_num: String!, $order: Int!, $p_id: uuid!, $queued_at
 
 `
 //
+const query_orders = gql`
+query MyQuery {
+  orders_token(order_by: {order: asc}) {
+    health_num
+    order
+    p_id
+    queued_at
+    patient {
+      name
+    }
+  }
+  orders_token_aggregate {
+    aggregate {
+      count
+    }
+  }
+}
+`
 export {insert_orders,query_patient_history,query_orders,register_recieptionist,query_users,add_patients,register_doctors,query_recieptionist,register_admins,add_recieptionists,login,query_patients,query_doctors,insert_history}
 

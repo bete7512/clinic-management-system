@@ -11,6 +11,12 @@ import doctorsVue from '../components/authenticated/admin/tasks/doctors.vue'
 import recieptionistVue from '../components/authenticated/admin/tasks/recieptionsits.vue'
 import patients from '@/components/authenticated/common/patients.vue'
 import user from '@/components/authenticated/admin/tasks/user.vue'
+import addbills from '@/components/authenticated/receptionist/tasks/addbills.vue'
+import addorders from '@/components/authenticated/receptionist/tasks/addorders.vue'
+import orders from '@/components/authenticated/common/orders.vue'
+import history from '@/components/authenticated/doctors/tasks/history.vue'
+import addhistory from '../components/authenticated/doctors/tasks/addhistory.vue'
+import prescrition from '@/components/authenticated/receptionist/tasks/prescrition.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -19,83 +25,107 @@ const router = createRouter({
       name: 'home',
       component: home
     },
-
     {
-      path:'/login',
-      name:'login',
-      component:login,
-      children:[
-      
-      ]
+      path: '/login',
+      name: 'login',
+      component: login,
     },
     {
-      path:'/doctors',
-      name:'doctors',
-      component:doctors,
-      children:[
-        
-      ]
-    },
-    {
-      path:'/recieptionists',
-      name:'recieptionists',
-      component:receptionists,
-      children:[
+      path: '/doctors',
+      name: 'doctors',
+      component: doctors,
+      children: [
         {
-          name:'addpatients',
-          path:'/addpatients',
-          component:addpatient
+          name: 'queue',
+          path: '/queue_orders',
+          component: orders
         },
         {
-          name:'patients',
-          path:'/viewpatients',
-          component:patients
+          name: 'history',
+          path: '/look_history',
+          component: history
+        },
+        {
+          name: 'addhistory',
+          path: '/addhistory',
+          component: addhistory
         }
       ]
     },
     {
-      path:'/admins',
-      name:'admins',
-      component:admins,
-      children:[
+      path: '/recieptionists',
+      name: 'recieptionists',
+      component: receptionists,
+      children: [
         {
-          name:'addrecieptionist',
-          path:'/addrecieptionists',
-          component:addrecieptionists
+          name: 'addpatients',
+          path: '/addpatients',
+          component: addpatient
         },
         {
-          name:'adddoctor',
-          path:'/adddoctors',
-          component:adddoctors
+          name: 'patients',
+          path: '/viewpatients',
+          component: patients
         },
         {
-          name:'look_doctors',
-          path:'/look_doctors',
-          component:doctorsVue
+          name: 'addorders',
+          path: '/add_orders',
+          component: addorders
         },
         {
-          name:'patientsview',
-          path:'/look_patients',
-          component:patients
+          name: 'orders',
+          path: '/look_orders',
+          component: orders
         },
         {
-          name:'look_recieptionist',
-          path:'/look_recieptionist',
-          component:recieptionistVue
+          name: 'addbills',
+          path: '/add_bills',
+          component: addbills
         },
         {
-          name:'user',
-          path:'/look_users',
-          component:user
+          name:'prescriptions',
+          path:'/print_prescrition',
+          component:prescrition
         }
       ]
     },
-    // {
-    //   path:'/',
-    //   name:'',
-    //   component:home
-    // }
+    {
+      path: '/admins',
+      name: 'admins',
+      component: admins,
+      children: [
+        {
+          name: 'addrecieptionist',
+          path: '/addrecieptionists',
+          component: addrecieptionists
+        },
+        {
+          name: 'adddoctor',
+          path: '/adddoctors',
+          component: adddoctors
+        },
+        {
+          name: 'look_doctors',
+          path: '/look_doctors',
+          component: doctorsVue
+        },
+        {
+          name: 'patientsview',
+          path: '/look_patients',
+          component: patients
+        },
+        {
+          name: 'look_recieptionist',
+          path: '/look_recieptionist',
+          component: recieptionistVue
+        },
+        {
+          name: 'user',
+          path: '/look_users',
+          component: user
+        },
+      ]
+    },
   ]
 })
-
 export default router

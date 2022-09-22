@@ -1,5 +1,5 @@
 <template>
-    <div class="overlay bg-fixed top-0 left-0 bg-white bottom-0 right-0 flex items-center justify-center">
+    <div class="bg-slate-400 h-screen top-0 left-0  bottom-0 right-0 flex items-center justify-center">
         <div class="bg-white rounded shadow-xl p-5">
             <div class="items-center  flex justify-end px-5 pt-1 ">
                 <button @click="router.push('/')" class="  text-4xl text-black rounded  ">X</button>

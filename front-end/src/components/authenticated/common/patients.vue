@@ -23,6 +23,7 @@
                         <td class="py-4 px-6">{{patient.registered_at}}</td>
                         <td class="py-4 px-6">{{patient.phone}}</td>
                         <td class="py-4 px-6">{{patient.address}}</td>
+                        <td>delete edit</td>
                     </tr>
                 </tbody>
             </table>

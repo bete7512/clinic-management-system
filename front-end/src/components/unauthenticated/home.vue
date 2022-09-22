@@ -1,5 +1,5 @@
 <template>
-    <div class="overlay bg-fixed top-0 left-0 bg-cyan-700 bottom-0 right-0 flex items-center justify-center">
+    <div class=" bg-slate-400  h-screen w-full  flex items-center justify-center">
         <div class="bg-white rounded-full shadow-xl  w-1/2 h-1/2 ">
             <div class="flex justify-center items-center w-full h-full bg-sky-400">
                 <div class="space-y-8">
