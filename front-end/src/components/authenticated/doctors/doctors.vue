@@ -1,11 +1,19 @@
 <template>
-    <div class="flex justify-center items-center px-14 w-full h-16  space-x-7 text bg-cyan-600"> 
-       well come 
+<div>
+    <div>
+    <h3 class="text-3xl font-medium text-gray-700">Dashboard / {{current}}</h3>
     </div>
-    
+    <div>
+        <router-view></router-view>
+    </div>
+</div>   
 </template>
 <script setup>
-import router from '@/router/index.ts'
+import { useRouter } from "vue-router";
+import {ref,computed} from 'vue'
+const { currentRoute } = useRouter();
+const current = computed(()=>currentRoute.value.name || '')
+console.log(current);
 </script>
 <sty>
     

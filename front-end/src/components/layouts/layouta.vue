@@ -15,11 +15,5 @@
   import { defineComponent, ref } from "vue";
   import Sidebar from "./sidebar/sidebara.vue";
   import Header from "./common/header.vue";
-//   export default defineComponent({
-//     components: {
-//       Header,
-//       Sidebar,
-//     },
-//   });
   </script>
   

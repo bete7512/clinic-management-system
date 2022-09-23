@@ -14,7 +14,6 @@
               d="M201.694 387.105C231.686 417.098 280.312 417.098 310.305 387.105C325.301 372.109 332.8 352.456 332.8 332.8C332.8 313.144 325.301 293.491 310.305 278.495C295.309 263.498 288 256 275.2 230.4C256 243.2 243.201 320 243.201 345.6C201.694 345.6 179.2 332.8 179.2 332.8C179.2 352.456 186.698 372.109 201.694 387.105Z"
               fill="white" />
           </svg>
-
           <span class="mx-2 text-2xl font-semibold text-white">Work Flow</span>
         </div>
       </div>
@@ -26,10 +25,8 @@
               fill="currentColor" />
             <path d="M12 2.25195C14.8113 2.97552 17.0245 5.18877 17.748 8.00004H12V2.25195Z" fill="currentColor" />
           </svg>
-
           <span class="mx-4">Admins</span>
         </router-link>
-
         <router-link class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
           :class="[$route.name === 'addrecieptionist' ? activeClass : inactiveClass]" to="/addrecieptionists">
           <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,10 +43,8 @@
               d="M11 13C11 11.8954 11.8954 11 13 11H15C16.1046 11 17 11.8954 17 13V15C17 16.1046 16.1046 17 15 17H13C11.8954 17 11 16.1046 11 15V13Z"
               fill="currentColor" />
           </svg>
-
           <span class="mx-4">Add recieptionists</span>
         </router-link>
-
         <router-link class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
           :class="[$route.name === 'adddoctor' ? activeClass : inactiveClass]" to="/adddoctors">
           <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,10 +58,8 @@
               d="M2 11C2 9.89543 2.89543 9 4 9H16C17.1046 9 18 9.89543 18 11V15C18 16.1046 17.1046 17 16 17H4C2.89543 17 2 16.1046 2 15V11Z"
               fill="currentColor" />
           </svg>
-
           <span class="mx-4">Add Doctors</span>
         </router-link>
-
         <router-link class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
           :class="[$route.name === 'look_doctors' ? activeClass : inactiveClass]" to="/look_doctors">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -75,7 +68,6 @@
               d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
               clip-rule="evenodd" />
           </svg>
-
           <span class="mx-4">look doctors</span>
         </router-link>
         <router-link class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
@@ -86,10 +78,8 @@
               d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
               clip-rule="evenodd" />
           </svg>
-
           <span class="mx-4">look recieptionists</span>
         </router-link>
-
         <router-link class="flex items-center px-6 py-2 mt-4 duration-200 border-l-4"
           :class="[$route.name === 'patientsview' ? activeClass : inactiveClass]" to="/look_patients">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -111,7 +101,6 @@
     </div>
   </div>
 </template>
-  
 <script setup lang="ts">
 import { defineComponent, ref } from "vue";
 import { useSidebar } from "../hooks/usesidebar";

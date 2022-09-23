@@ -24,12 +24,6 @@ import prepareprescription from '@/components/authenticated/receptionist/tasks/p
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: home,
-    //   meta: { layout: "empty" },
-    // },
     {
       path: '/',
       name: 'login',
@@ -41,129 +35,133 @@ const router = createRouter({
       path: '/doctors',
       name: 'doctors',
       component: doctors,
-      meta:{layout:'doctor'}
-    },
-    {
-
-      name: 'queue',
-      path: '/queue_orders',
-      component: orders,
-      meta: { layout: 'doctor' }
-    },
-    {
-
-      name: 'history',
-      path: '/look_history',
-      component: history,
-      meta:{layout:'doctor'}
-
-    },
-    {
-
-      name: 'addhistory',
-      path: '/addhistory',
-      component: addhistory,
-      meta:{layout:'doctor'}
+      meta:{layout:'doctor'},
+      children:[
+        {
+          name: 'queue',
+          path: '/queue_orders',
+          component: orders,
+          // meta: { layout: 'doctor' }
+        },
+        {
+    
+          name: 'history',
+          path: '/look_history',
+          component: history,
+          // meta:{layout:'doctor'}
+    
+        },
+        {
+    
+          name: 'addhistory',
+          path: '/addhistory',
+          component: addhistory,
+          // meta:{layout:'doctor'}
+        },
+      ]
     },
     {
       path: '/recieptionists',
       name: 'recieptionists',
       component: receptionists,
-      meta: { layout: 'recieptionist' }
-    },
-    {
-      name: 'addpatients',
-      path: '/addpatients',
-      component: addpatient,
-      meta: { layout: 'recieptionist' }
-    },
-    {
-      name: 'patients',
-      path: '/viewpatients',
-      component: patients,
-      meta: { layout: 'recieptionist' }
-    },
-    {
-      name: 'addorders',
-      path: '/add_orders',
-      component: addorders,
-      meta: { layout: 'recieptionist' }
-    },
-    {
-      name: 'orders',
-      path: '/look_orders',
-      component: orders,
-      meta: { layout: 'recieptionist' }
-    },
-    {
-      name: 'addbills',
-      path: '/add_bills',
-      component: addbills,
-      meta: { layout: 'recieptionist' }
-    },
-    {
-      name: 'prescriptions',
-      path: '/print_prescrition/:id',
-      component: printprescrition,
-      meta: { layout: 'recieptionist' }
-
-    },
-    {
-      name: 'printreciet',
-      path: '/print_reciet/:id',
-      component: printreciet,
-      meta: { layout: 'recieptionist' }
-
-    },
-    {
-      name: 'prepareprescrition',
-      path: '/printprescription',
-      component: prepareprescription,
-      meta: { layout: 'recieptionist' }
-    },
-    {
-      name: 'addrecieptionist',
-      path: '/addrecieptionists',
-      component: addrecieptionists,
-      meta: { layout: 'admin' },
+      meta: { layout: 'recieptionist' },
+      children:[
+        {
+          name: 'addpatients',
+          path: '/addpatients',
+          component: addpatient,
+          meta: { layout: 'recieptionist' }
+        },
+        {
+          name: 'patients',
+          path: '/viewpatients',
+          component: patients,
+          meta: { layout: 'recieptionist' }
+        },
+        {
+          name: 'addorders',
+          path: '/add_orders',
+          component: addorders,
+          meta: { layout: 'recieptionist' }
+        },
+        {
+          name: 'orders',
+          path: '/look_orders',
+          component: orders,
+          meta: { layout: 'recieptionist' }
+        },
+        {
+          name: 'addbills',
+          path: '/add_bills',
+          component: addbills,
+          meta: { layout: 'recieptionist' }
+        },
+        {
+          name: 'prescriptions',
+          path: '/print_prescrition/:id',
+          component: printprescrition,
+          meta: { layout: 'recieptionist' }
+    
+        },
+        {
+          name: 'printreciet',
+          path: '/print_reciet/:id',
+          component: printreciet,
+          meta: { layout: 'recieptionist' }
+    
+        },
+        {
+          name: 'prepareprescrition',
+          path: '/printprescription',
+          component: prepareprescription,
+          meta: { layout: 'recieptionist' }
+        },
+      ]
     },
     {
       path: '/admins',
       name: 'admins',
       component: admins,
       meta: { layout: 'admin' },
-    },
-    {
-      name: 'adddoctor',
-      path: '/adddoctors',
-      component: adddoctors,
-      meta: { layout: 'admin' },
-
-    },
-    {
-      name: 'look_doctors',
-      path: '/look_doctors',
-      component: doctors,
-      meta: { layout: 'admin' },
-
-    },
-    {
-      name: 'patientsview',
-      path: '/look_patients',
-      component: patients,
-      meta: { layout: 'admin' },
-    },
-    {
-      name: 'look_recieptionist',
-      path: '/look_recieptionist',
-      component: recieptionistVue,
-      meta: { layout: 'admin' },
-    },
-    {
-      name: 'user',
-      path: '/look_users',
-      component: user,
-      meta: { layout: 'admin' },
+      children:[
+        {
+          name: 'addrecieptionist',
+          path: '/addrecieptionists',
+          component: addrecieptionists,
+          // meta: { layout: 'admin' },
+        },
+        {
+          name: 'adddoctor',
+          path: '/adddoctors',
+          component: adddoctors,
+          // meta: { layout: 'admin' },
+    
+        },
+        {
+          name: 'look_doctors',
+          path: '/look_doctors',
+          component: doctorsVue,
+          // meta: { layout: 'admin' },
+    
+        },
+        {
+          name: 'patientsview',
+          path: '/look_patients',
+          component: patients,
+          // meta: { layout: 'admin' },
+        },
+        {
+          name: 'look_recieptionist',
+          path: '/look_recieptionist',
+          component: recieptionistVue,
+          // meta: { layout: 'admin' },
+        },
+        {
+          name: 'user',
+          path: '/look_users',
+          component: user,
+        },
+      ]
     },
   ]
 })

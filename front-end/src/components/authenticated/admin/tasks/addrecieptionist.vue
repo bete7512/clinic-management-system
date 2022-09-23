@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-center items-center py-5  ">
         <div class="w-1/3">
-            <Form class=" justify-center space-y-6 bg-cyan-400 p-10 rounded w-full  items-center  p-b-10 px-10"
+            <Form class=" justify-center space-y-6 bg-white p-10 rounded w-full  items-center  p-b-10 px-10"
                 @submit.preventDefault="onSubmit" :validation-schema="schema" v-slot="{ errors }">
                 <div class="space-y-10">
                     <div class="space-y-3">

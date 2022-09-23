@@ -15,7 +15,7 @@ export default defineComponent({
       () => `${currentRoute.value.meta.layout || defaultLayout}-layout`
     );
     console.log(layout);
-    console.log(currentRoute.value.meta.layout);
+    // console.log(currentRoute.value.meta.la);
     
 
     return {
