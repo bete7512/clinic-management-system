@@ -3,7 +3,7 @@
     <div>
     <h3 class="text-3xl font-medium text-gray-700">Dashboard / {{current}}</h3>
     </div>
-    <div>
+    <div class="mt-5">
         <router-view></router-view>
     </div>
 </div>   

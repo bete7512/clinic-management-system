@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import home from '../components/unauthenticated/home.vue'
 import doctors from '@/components/authenticated/doctors/doctors.vue'
 import admins from '@/components/authenticated/admin/admins.vue'
 import receptionists from '@/components/authenticated/receptionist/receptionists.vue'

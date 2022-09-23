@@ -1,9 +1,7 @@
 <template>
     <div class="flex items-center justify-center h-screen px-6 bg-gray-200">
         <div class="w-full max-w-sm p-6 bg-white rounded-md shadow-md">
-            <div class="items-center flex justify-end px-3 pt-1 ">
-                <button @click="router.push('/')" class="text-2xl p-2 text-black hover:bg-red-700 rounded  ">X</button>
-            </div>
+            
             <div class="flex items-center justify-center">
                 <svg class="w-10 h-10" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
