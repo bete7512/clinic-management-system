@@ -9,6 +9,7 @@ select_permissions:
         - isactive
         - name
         - password
+        - phone
         - roles
         - username
       filter: {}

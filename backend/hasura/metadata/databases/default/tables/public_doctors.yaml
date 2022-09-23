@@ -1,6 +1,14 @@
 table:
   name: doctors
   schema: public
+array_relationships:
+  - name: histories
+    using:
+      foreign_key_constraint_on:
+        column: doctors
+        table:
+          name: history
+          schema: public
 insert_permissions:
   - role: admins
     permission:
@@ -30,7 +38,9 @@ select_permissions:
         - phone
         - speciality
         - d_id
-      filter: {}
+      filter:
+        d_id:
+          _eq: X-Hasura-User-Id
   - role: recieptionists
     permission:
       columns:

@@ -1,50 +1,81 @@
 table:
   name: orders_token
   schema: public
+object_relationships:
+  - name: patient
+    using:
+      foreign_key_constraint_on: p_id
 insert_permissions:
   - role: admins
     permission:
       check: {}
       columns:
         - queued_at
-        - order_number
-        - doctor
-        - patient
-  - role: doctors
+        - health_num
+        - p_id
+        - order
+  - role: recieptionists
     permission:
       check: {}
       columns:
         - queued_at
-        - order_number
-        - doctor
-        - patient
+        - order
+        - health_num
+        - p_id
 select_permissions:
   - role: admins
     permission:
       columns:
         - queued_at
-        - order_number
-        - doctor
-        - patient
+        - order
+        - health_num
+        - p_id
       filter: {}
+      allow_aggregations: true
   - role: doctors
     permission:
       columns:
-        - order_number
-        - patient
         - queued_at
-      filter:
-        doctor:
-          _eq: X-Hasura-User-Id
+        - order
+        - health_num
+        - p_id
+      filter: {}
+      allow_aggregations: true
+  - role: recieptionists
+    permission:
+      columns:
+        - queued_at
+        - order
+        - health_num
+        - p_id
+      filter: {}
       allow_aggregations: true
 update_permissions:
   - role: admins
     permission:
       columns:
         - queued_at
-        - order_number
-        - doctor
-        - patient
+        - order
+        - health_num
+        - p_id
+      filter: {}
+      check: {}
+  - role: doctors
+    permission:
+      columns:
+        - queued_at
+        - order
+        - health_num
+        - p_id
+      filter: {}
+      check: {}
+  - role: recieptionists
+    permission:
+      columns:
+        - queued_at
+        - order
+        - health_num
+        - p_id
       filter: {}
       check: {}
 delete_permissions:
@@ -52,3 +83,16 @@ delete_permissions:
     permission:
       backend_only: false
       filter: {}
+event_triggers:
+  - name: order_patient
+    definition:
+      delete:
+        columns: '*'
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: http.host.docker.internal:3000/orderpatient

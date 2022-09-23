@@ -1,6 +1,13 @@
 table:
   name: history
   schema: public
+object_relationships:
+  - name: doctor
+    using:
+      foreign_key_constraint_on: doctors
+  - name: patient
+    using:
+      foreign_key_constraint_on: patients
 insert_permissions:
   - role: admins
     permission:

@@ -1,6 +1,35 @@
 table:
   name: patients
   schema: public
+array_relationships:
+  - name: bills
+    using:
+      foreign_key_constraint_on:
+        column: helth_num
+        table:
+          name: bills
+          schema: public
+  - name: billsByPId
+    using:
+      foreign_key_constraint_on:
+        column: p_id
+        table:
+          name: bills
+          schema: public
+  - name: histories
+    using:
+      foreign_key_constraint_on:
+        column: patients
+        table:
+          name: history
+          schema: public
+  - name: orders_tokens
+    using:
+      foreign_key_constraint_on:
+        column: p_id
+        table:
+          name: orders_token
+          schema: public
 insert_permissions:
   - role: admins
     permission:
@@ -43,7 +72,9 @@ select_permissions:
   - role: doctors
     permission:
       columns:
+        - registered_at
         - address
+        - health_num
         - name
         - phone
         - p_id
@@ -72,6 +103,17 @@ update_permissions:
     permission:
       columns:
         - address
+        - name
+        - phone
+        - p_id
+      filter: {}
+      check: {}
+  - role: recieptionists
+    permission:
+      columns:
+        - registered_at
+        - address
+        - health_num
         - name
         - phone
         - p_id

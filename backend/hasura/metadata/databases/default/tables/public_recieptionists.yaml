@@ -1,6 +1,14 @@
 table:
   name: recieptionists
   schema: public
+array_relationships:
+  - name: bills
+    using:
+      foreign_key_constraint_on:
+        column: recieptionist
+        table:
+          name: bills
+          schema: public
 insert_permissions:
   - role: admins
     permission:
@@ -28,6 +36,16 @@ select_permissions:
         - phone
         - r_id
       filter: {}
+  - role: recieptionists
+    permission:
+      columns:
+        - address
+        - name
+        - phone
+        - r_id
+      filter:
+        r_id:
+          _eq: X-Hasura-User-Id
 update_permissions:
   - role: admins
     permission:

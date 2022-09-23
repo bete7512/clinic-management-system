@@ -1,17 +1,30 @@
 table:
   name: bills
   schema: public
+object_relationships:
+  - name: patient
+    using:
+      foreign_key_constraint_on: helth_num
+  - name: patientByPId
+    using:
+      foreign_key_constraint_on: p_id
+  - name: recieptionistByRecieptionist
+    using:
+      foreign_key_constraint_on: recieptionist
 insert_permissions:
   - role: admins
     permission:
       check: {}
+      set:
+        recieptionist: x-hasura-User-Id
       columns:
+        - p_id
+        - payment_for
         - due_date
         - total
-        - payment_for
         - bill_id
-        - d_id
-        - p_id
+        - recieptionist
+        - helth_num
   - role: recieptionists
     permission:
       check: {}
@@ -20,33 +33,51 @@ insert_permissions:
       columns:
         - due_date
         - total
+        - helth_num
         - payment_for
         - bill_id
-        - d_id
         - p_id
+        - recieptionist
 select_permissions:
   - role: admins
     permission:
       columns:
         - due_date
         - total
+        - helth_num
         - payment_for
         - bill_id
-        - d_id
         - p_id
+        - recieptionist
       filter: {}
-update_permissions:
-  - role: admins
+      allow_aggregations: true
+  - role: recieptionists
     permission:
       columns:
         - due_date
         - total
+        - helth_num
         - payment_for
         - bill_id
-        - d_id
         - p_id
+        - recieptionist
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: recieptionists
+    permission:
+      columns:
+        - due_date
+        - total
+        - helth_num
+        - payment_for
+        - bill_id
+        - p_id
+        - recieptionist
       filter: {}
       check: {}
+      set:
+        recieptionist: x-hasura-User-Id
 delete_permissions:
   - role: admins
     permission:
