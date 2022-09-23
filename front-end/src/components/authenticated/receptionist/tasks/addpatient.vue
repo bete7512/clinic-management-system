@@ -1,6 +1,5 @@
 <template>
-    <div class="flex justify-center items-center py-5  ">
-  
+    <div class="flex justify-center items-center py-5">
         <div class="w-1/3">
             <Form class=" justify-center space-y-6 bg-cyan-400 p-10 rounded w-full  items-center  p-b-10 px-10"
                 @submit.preventDefault="onSubmit" :validation-schema="schema" v-slot="{ errors }">
@@ -58,6 +57,8 @@
                 </div>
             </Form>
         </div>
+
+        
     </div>
     <modal :notify="notify" v-if="successmodal" v-on:success="successmodal = false"></modal>
 </template>
@@ -117,7 +118,6 @@ const onSubmit = async () => {
         registerprocessing.value = false
     }
 }
-
 </script>
 <style>
 

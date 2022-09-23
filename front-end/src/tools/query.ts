@@ -31,7 +31,6 @@ mutation MyMutation($name: String!, $phone: String!, $address: String!) {
   }
 }
 `
-
 const register_recieptionist = gql`
 mutation MyMutation($name: String = "", $phone: String = "", $address: String = "") {
   signupr(objects: {name: $name, phone: $phone, address: $address}) {
@@ -39,7 +38,6 @@ mutation MyMutation($name: String = "", $phone: String = "", $address: String = 
   }
 }
 `
-
 const add_recieptionists = gql`
 mutation MyMutation($name: String!, $phone: String!, $address: String!) {
     signupr(objects: {address: $address, name: $name, phone: $phone}) {
@@ -47,7 +45,6 @@ mutation MyMutation($name: String!, $phone: String!, $address: String!) {
     }
   }  
 `
-
 const query_patients = gql`
 query MyQuery {
   patients {
@@ -60,7 +57,6 @@ query MyQuery {
   }
 }
 `
-
 const query_doctors = gql`
 query MyQuery {
   doctors {
@@ -77,7 +73,6 @@ query MyQuery {
   }
 }
 `
-
 const query_users = gql`
 query MyQuery {
   users {
@@ -110,10 +105,9 @@ query MyQuery {
   }
 }
 `
-//
 const insert_history = gql`
-mutation MyMutation($diseases_name: String!, $h_id: uuid!, $labratory_result: String!, $patients: uuid!, $prescription: String!) {
-  insert_history(objects: {diseases_name: $diseases_name, labratory_result: $labratory_result, patients: $patients, prescription: $prescription, h_id: $h_id}) {
+mutation MyMutation($diseases_name: String!, $h_id: uuid!, $labratory_result: String!, $patients: uuid!, $prescription: String!, $doctors: uuid = "") {
+  insert_history(objects: {diseases_name: $diseases_name, labratory_result: $labratory_result, patients: $patients, prescription: $prescription, h_id: $h_id, doctors: $doctors}) {
     returning {
       doctors
     }
@@ -139,21 +133,20 @@ query MyQuery($p_id: uuid!) {
   }
 }
 `
-
 const  insert_orders = gql`
-mutation MyMutation($health_num: String!, $order: Int!, $p_id: uuid!, $queued_at: date!) {
-  insert_orders_token(objects: {health_num: $health_num, order: $order, p_id: $p_id, queued_at: $queued_at}) {
+mutation MyMutation($health_num: String!, $order: Int!, $p_id: uuid!) {
+  insert_orders_token(objects: {health_num: $health_num, order: $order, p_id: $p_id}) {
     returning {
-      p_id
-      queued_at
       health_num
       order
+      p_id
+      patient {
+        name
+      }
     }
   }
 }
-
 `
-//
 const query_orders = gql`
 query MyQuery {
   orders_token(order_by: {order: asc}) {
@@ -172,5 +165,37 @@ query MyQuery {
   }
 }
 `
-export {insert_orders,query_patient_history,query_orders,register_recieptionist,query_users,add_patients,register_doctors,query_recieptionist,register_admins,add_recieptionists,login,query_patients,query_doctors,insert_history}
+
+
+
+const query_order_by_health_num = gql`
+query MyQuery($health_num: String!) {
+  orders_token(where: {health_num: {_eq: $health_num}}) {
+    health_num
+    order
+    p_id
+    queued_at
+  }
+}
+`
+const query_patient_by_health_num = gql`
+query MyQuery($health_num: String!) {
+  patients(where: {health_num: {_eq: $health_num}}) {
+    health_num
+    name
+    p_id
+  }
+}
+`
+
+const add_bills = gql`
+mutation MyMutation($bill_id: uuid!, $helth_num: String!, $p_id: uuid!, $payment_for: String!, $recieptionist: uuid!, $total: Int!) {
+  insert_bills(objects: {bill_id: $bill_id, helth_num: $helth_num, p_id: $p_id, payment_for: $payment_for, recieptionist: $recieptionist, total: $total}) {
+    returning {
+      bill_id
+    }
+  }
+}
+`
+export {add_bills,query_patient_by_health_num,query_order_by_health_num,insert_orders,query_patient_history,query_orders,register_recieptionist,query_users,add_patients,register_doctors,query_recieptionist,register_admins,add_recieptionists,login,query_patients,query_doctors,insert_history};
 

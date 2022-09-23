@@ -5,25 +5,26 @@
                 @submit.preventDefault="onSubmit" :validation-schema="schema" v-slot="{ errors }">
                 <div class="space-y-10">
                     <div class="space-y-3">
-                        <label>Name</label>
-                        <Field name="name" type="text" v-model="name" placeholder="enter name of patient"
+                        <label>Disease Name</label>
+                        <Field name="dname" type="text" v-model="dname" placeholder="enter name of disease"
                             class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                            :class="{ 'is-invalid': errors.name }" />
-                        <div class="text-red-700">{{errors.name}}</div>
+                            :class="{ 'is-invalid': errors.dname }" />
+                        <div class="text-red-700">{{errors.dname}}</div>
                     </div>
                     <div class="space-y-3">
-                        <label>Phone</label>
-                        <Field name="phone" type="text" v-model="phone" placeholder="enter phone number"
+                        <label>Labratory </label>
+                        <Field name="lab" type="text" v-model="lab" placeholder="enter labratory result"
                             class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                            :class="{ 'is-invalid': errors.phone }" />
-                        <div class="text-red-700">{{errors.phone}}</div>
+                            :class="{ 'is-invalid'   : errors.lab}" />
+                        <div class="text-red-700"> {{errors.lab}} </div>
                     </div>
                     <div class="space-y-3">
-                        <label>Address</label>
-                        <Field name="address" type="text" v-model="address" placeholder="Enter address"
-                            class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                            :class="{ 'is-invalid': errors.address }" />
-                        <div class="text-red-700">{{errors.address}}</div>
+                        <label>
+                            prescrition
+                        </label>
+                        <textarea name="address" type="text" v-model="prescrition" placeholder="Enter prescrition"
+                            class="block h-20 w-full p-2 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300">
+                        </textarea>
                     </div>
                 </div>
                 <div class="text-red-600">{{loginreturn}}</div>
@@ -33,7 +34,7 @@
                         <div v-if="loginprocess" class="text-2xl">
                             <svg role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
-    
+
                                 <path
                                     d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
                                     fill="#E5E7EB" />
@@ -45,7 +46,7 @@
                         </div>
                         <div v-else>
                             register
-                             </div>
+                        </div>
                     </button>
                 </div>
             </Form>

@@ -16,115 +16,154 @@ import addorders from '@/components/authenticated/receptionist/tasks/addorders.v
 import orders from '@/components/authenticated/common/orders.vue'
 import history from '@/components/authenticated/doctors/tasks/history.vue'
 import addhistory from '../components/authenticated/doctors/tasks/addhistory.vue'
-import prescrition from '@/components/authenticated/receptionist/tasks/prescrition.vue'
+import printprescrition from '@/components/authenticated/receptionist/tasks/printprescrition.vue'
+import printreciet from '@/components/authenticated/receptionist/tasks/printreciet.vue'
+import prepareprescription from '@/components/authenticated/receptionist/tasks/prepareprescrition.vue'
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'home',
+    //   component: home,
+    //   meta: { layout: "empty" },
+    // },
     {
       path: '/',
-      name: 'home',
-      component: home
-    },
-    {
-      path: '/login',
       name: 'login',
       component: login,
+      meta: { layout: "empty" },
+
     },
     {
       path: '/doctors',
       name: 'doctors',
       component: doctors,
-      children: [
-        {
-          name: 'queue',
-          path: '/queue_orders',
-          component: orders
-        },
-        {
-          name: 'history',
-          path: '/look_history',
-          component: history
-        },
-        {
-          name: 'addhistory',
-          path: '/addhistory',
-          component: addhistory
-        }
-      ]
+      meta:{layout:'doctor'}
+    },
+    {
+
+      name: 'queue',
+      path: '/queue_orders',
+      component: orders,
+      meta: { layout: 'doctor' }
+    },
+    {
+
+      name: 'history',
+      path: '/look_history',
+      component: history,
+      meta:{layout:'doctor'}
+
+    },
+    {
+
+      name: 'addhistory',
+      path: '/addhistory',
+      component: addhistory,
+      meta:{layout:'doctor'}
     },
     {
       path: '/recieptionists',
       name: 'recieptionists',
       component: receptionists,
-      children: [
-        {
-          name: 'addpatients',
-          path: '/addpatients',
-          component: addpatient
-        },
-        {
-          name: 'patients',
-          path: '/viewpatients',
-          component: patients
-        },
-        {
-          name: 'addorders',
-          path: '/add_orders',
-          component: addorders
-        },
-        {
-          name: 'orders',
-          path: '/look_orders',
-          component: orders
-        },
-        {
-          name: 'addbills',
-          path: '/add_bills',
-          component: addbills
-        },
-        {
-          name:'prescriptions',
-          path:'/print_prescrition',
-          component:prescrition
-        }
-      ]
+      meta: { layout: 'recieptionist' }
+    },
+    {
+      name: 'addpatients',
+      path: '/addpatients',
+      component: addpatient,
+      meta: { layout: 'recieptionist' }
+    },
+    {
+      name: 'patients',
+      path: '/viewpatients',
+      component: patients,
+      meta: { layout: 'recieptionist' }
+    },
+    {
+      name: 'addorders',
+      path: '/add_orders',
+      component: addorders,
+      meta: { layout: 'recieptionist' }
+    },
+    {
+      name: 'orders',
+      path: '/look_orders',
+      component: orders,
+      meta: { layout: 'recieptionist' }
+    },
+    {
+      name: 'addbills',
+      path: '/add_bills',
+      component: addbills,
+      meta: { layout: 'recieptionist' }
+    },
+    {
+      name: 'prescriptions',
+      path: '/print_prescrition/:id',
+      component: printprescrition,
+      meta: { layout: 'recieptionist' }
+
+    },
+    {
+      name: 'printreciet',
+      path: '/print_reciet/:id',
+      component: printreciet,
+      meta: { layout: 'recieptionist' }
+
+    },
+    {
+      name: 'prepareprescrition',
+      path: '/printprescription',
+      component: prepareprescription,
+      meta: { layout: 'recieptionist' }
+    },
+    {
+      name: 'addrecieptionist',
+      path: '/addrecieptionists',
+      component: addrecieptionists,
+      meta: { layout: 'admin' },
     },
     {
       path: '/admins',
       name: 'admins',
       component: admins,
-      children: [
-        {
-          name: 'addrecieptionist',
-          path: '/addrecieptionists',
-          component: addrecieptionists
-        },
-        {
-          name: 'adddoctor',
-          path: '/adddoctors',
-          component: adddoctors
-        },
-        {
-          name: 'look_doctors',
-          path: '/look_doctors',
-          component: doctorsVue
-        },
-        {
-          name: 'patientsview',
-          path: '/look_patients',
-          component: patients
-        },
-        {
-          name: 'look_recieptionist',
-          path: '/look_recieptionist',
-          component: recieptionistVue
-        },
-        {
-          name: 'user',
-          path: '/look_users',
-          component: user
-        },
-      ]
+      meta: { layout: 'admin' },
+    },
+    {
+      name: 'adddoctor',
+      path: '/adddoctors',
+      component: adddoctors,
+      meta: { layout: 'admin' },
+
+    },
+    {
+      name: 'look_doctors',
+      path: '/look_doctors',
+      component: doctors,
+      meta: { layout: 'admin' },
+
+    },
+    {
+      name: 'patientsview',
+      path: '/look_patients',
+      component: patients,
+      meta: { layout: 'admin' },
+    },
+    {
+      name: 'look_recieptionist',
+      path: '/look_recieptionist',
+      component: recieptionistVue,
+      meta: { layout: 'admin' },
+    },
+    {
+      name: 'user',
+      path: '/look_users',
+      component: user,
+      meta: { layout: 'admin' },
     },
   ]
 })

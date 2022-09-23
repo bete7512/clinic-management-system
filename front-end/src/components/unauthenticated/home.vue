@@ -15,8 +15,9 @@
         </div>
     </div>
 </template>
-<script setup >
-import router from '@/router/index.ts' 
+<script setup>
+import router from '@/router/index.ts'
+
 </script>
 <style scoped>
 .overlay {

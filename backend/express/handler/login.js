@@ -2,11 +2,11 @@ const bcrypt = require('bcrypt')
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const handler = async (req, res) => {
+  console.log(req.body.input);
   const { username, password } = req.body.input.objects;
   const finduser = require('../checker/findusername')
   const { data, error } = await finduser({username })
   const user = data["users"][0]
-
   if (!user) {
     return res.status(400).json({
       message: 'incorrect username or password please enter again'
