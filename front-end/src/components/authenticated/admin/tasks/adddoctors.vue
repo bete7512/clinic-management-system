@@ -1,22 +1,24 @@
 <template>
     <div class="flex justify-center items-center py-5  ">
-        <div class="w-1/3">
+        <div class="w-auto">
             <Form class=" justify-center space-y-6 bg-white p-10 rounded w-full  items-center  p-b-10 px-10"
                 @submit.preventDefault="onSubmit" :validation-schema="schema" v-slot="{ errors }">
                 <div class="space-y-10">
-                    <div class="space-y-3">
-                        <label>Name</label>
-                        <Field name="name" type="text" v-model="name" placeholder="enter name of patient"
-                            class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                            :class="{ 'is-invalid': errors.name }" />
-                        <div class="text-red-700">{{errors.name}}</div>
-                    </div>
-                    <div class="space-y-3">
-                        <label>Phone</label>
-                        <Field name="phone" type="text" v-model="phone" placeholder="enter phone number"
-                            class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                            :class="{ 'is-invalid': errors.phone }" />
-                        <div class="text-red-700">{{errors.phone}}</div>
+                    <div class="flex flex-wrap space-x-4">
+                        <div class="space-y-3">
+                            <label>Name</label>
+                            <Field name="name" type="text" v-model="name" placeholder="enter name of patient"
+                                class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                                :class="{ 'is-invalid': errors.name }" />
+                            <div class="text-red-700">{{errors.name}}</div>
+                        </div>
+                        <div class="space-y-3">
+                            <label>Phone</label>
+                            <Field name="phone" type="text" v-model="phone" placeholder="enter phone number"
+                                class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                                :class="{ 'is-invalid': errors.phone }" />
+                            <div class="text-red-700">{{errors.phone}}</div>
+                        </div>
                     </div>
                     <div class="space-y-3">
                         <label>Address</label>
@@ -78,7 +80,6 @@ const schema = Yup.object().shape({
     address: Yup.string().required('address is required'),
     speciality:Yup.string().required('doctors specialization is required')
 })
-
 const emit = defineEmits(['successfulll'])
 const user = userStore()
 const registerprocessing = ref(false)

@@ -1,43 +1,55 @@
 <template>
     <div class="flex justify-center items-center py-5">
-        <div class="w-1/3">
-            <Form class=" justify-center space-y-6 bg-cyan-400 p-10 rounded w-full  items-center  p-b-10 px-10"
+        <div class="w-auto">
+            <Form class=" justify-center space-y-6 bg-white p-10 rounded w-full  items-center  p-b-10 px-10"
                 @submit.preventDefault="onSubmit" :validation-schema="schema" v-slot="{ errors }">
                 <div class="space-y-10">
-                    <div class="space-y-3">
-                        <label>Name</label>
-                        <Field name="name" type="text" v-model="name" placeholder="enter name of patient"
-                            class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                            :class="{ 'is-invalid': errors.name }" />
-                        <div class="text-red-700">{{errors.name}}</div>
+                    <div class="flex flex-wrap space-x-4">
+                        <div class="space-y-3">
+                            <label>Name</label>
+                            <Field name="name" type="text" v-model="name" placeholder="enter name of patient"
+                                class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                                :class="{ 'is-invalid': errors.name }" />
+                            <div class="text-red-700">{{errors.name}}</div>
+                        </div>
+                    
+                        <div class="space-y-3">
+                            <label>Phone</label>
+                            <Field name="phone" type="text" v-model="phone" placeholder="enter phone number"
+                                class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                                :class="{ 'is-invalid': errors.phone }" />
+                            <div class="text-red-700">{{errors.phone}}</div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap space-x-4">
+                        <div class="space-y-3">
+                            <label>Address</label>
+                            <Field name="address" type="text" v-model="address" placeholder="Enter address"
+                                class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                                :class="{ 'is-invalid': errors.address }" />
+                            <div class="text-red-700">{{errors.address}}</div>
+                        </div>
+                        <div class="space-y-3">
+                            <label>Health number</label>
+                            <Field name="health_num" type="text" v-model="health_num" placeholder="Enter health number"
+                                class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                                :class="{ 'is-invalid': errors.health_num }" />
+                            <div class="text-red-700">{{errors.health_num}}</div>
+                        </div>
                     </div>
                     <div class="space-y-3">
-                        <label>Phone</label>
-                        <Field name="phone" type="text" v-model="phone" placeholder="enter phone number"
-                            class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                            :class="{ 'is-invalid': errors.phone }" />
-                        <div class="text-red-700">{{errors.phone}}</div>
-                    </div>
-                    <div class="space-y-3">
-                        <label>Address</label>
-                        <Field name="address" type="text" v-model="address" placeholder="Enter address"
-                            class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                            :class="{ 'is-invalid': errors.address }" />
-                        <div class="text-red-700">{{errors.address}}</div>
-                    </div>
-                    <div class="space-y-3">
-                        <label>Health number</label>
-                        <Field name="health_num" type="text" v-model="health_num" placeholder="Enter health number"
-                            class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
-                            :class="{ 'is-invalid': errors.health_num }" />
-                        <div class="text-red-700">{{errors.health_num}}</div>
-                    </div>
+                            <label>Health number</label>
+                            <Field name="health_num" type="text" v-model="health_num" placeholder="Enter health number"
+                                class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                                :class="{ 'is-invalid': errors.health_num }" />
+                            <div class="text-red-700">{{errors.health_num}}</div>
+                        </div>
                 </div>
                 <div class="text-red-600">{{loginreturn}}</div>
                 <div class="pt-2">
                     <button type="submit"
                         class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        <div v-if="loginprocess" class="text-2xl">
+                        <div v-if="registerprocessing" class="text-2xl">
                             <svg role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
 
@@ -96,8 +108,8 @@ const registerprocessing = ref(false)
 let loginreturn = ref('')
 const onSubmit = async () => {
     console.log("something from here");
+    registerprocessing.value = true
     try {
-        registerprocessing.value = true
         await patient.addpatient({
             name: name.value,
             phone: phone.value,
@@ -105,17 +117,15 @@ const onSubmit = async () => {
             health_num: health_num.value,
             p_id: uuidv4()
         })
-        emit('successadded')
         successmodal.value = true
+        registerprocessing.value = false
         name.value = ''
         phone.value = ''
         address.value = ''
         health_num.value = ''
-        registerprocessing.value = false
     }
     catch (error) {
         loginreturn = error.message
-        registerprocessing.value = false
     }
 }
 </script>

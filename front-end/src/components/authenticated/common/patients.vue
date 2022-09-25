@@ -12,6 +12,7 @@
                         <th class="py-3 px-6"> date</th>
                         <th class="py-3 px-6"> phone</th>
                         <th class="py-3 px-6">address</th>
+                        <th class="py-3 px-6">activity</th>  
                     </tr>
                 </thead>
                 <tbody>
@@ -34,9 +35,7 @@
 import { useMutation, useQuery } from '@vue/apollo-composable';
 import { query_patients } from '@/tools/query'
 import router from '@/router';
-const { error, loading, result } = useQuery(
-    query_patients
-)
+const { error, loading, result } = useQuery( query_patients )
 </script>
 <style lang="">
     

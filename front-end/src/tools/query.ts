@@ -106,11 +106,10 @@ query MyQuery {
 }
 `
 const insert_history = gql`
-mutation MyMutation($diseases_name: String!, $h_id: uuid!, $labratory_result: String!, $patients: uuid!, $prescription: String!, $doctors: uuid = "") {
-  insert_history(objects: {diseases_name: $diseases_name, labratory_result: $labratory_result, patients: $patients, prescription: $prescription, h_id: $h_id, doctors: $doctors}) {
-    returning {
-      doctors
-    }
+mutation MyMutation($category: String!, $diseases_name: String!, $h_id: uuid!, $health_num: String!, $labratory_result: String!, $patients: uuid!, $prescription: String!) {
+  insert_history_one(object: {category: $category, diseases_name: $diseases_name, h_id: $h_id, health_num: $health_num, labratory_result: $labratory_result, patients: $patients, prescription: $prescription}) {
+    diseases_name
+    doctors
   }
 }
 `
@@ -134,15 +133,12 @@ query MyQuery($p_id: uuid!) {
 }
 `
 const  insert_orders = gql`
-mutation MyMutation($health_num: String!, $order: Int!, $p_id: uuid!) {
-  insert_orders_token(objects: {health_num: $health_num, order: $order, p_id: $p_id}) {
+mutation MyMutation($health_num: String!, $order: Int!, $p_id: uuid!, $categories: String!) {
+  insert_orders_token(objects: {health_num: $health_num, order: $order, p_id: $p_id, categories: $categories}) {
     returning {
-      health_num
       order
       p_id
-      patient {
-        name
-      }
+      health_num
     }
   }
 }
@@ -153,12 +149,13 @@ query MyQuery {
     health_num
     order
     p_id
+    categories
     queued_at
     patient {
       name
     }
   }
-  orders_token_aggregate {
+  orders_token_aggregate{
     aggregate {
       count
     }
@@ -166,13 +163,24 @@ query MyQuery {
 }
 `
 
-
+const max_orders = gql`
+query MyQuery($category: String!){
+  orders_token_aggregate(where: {categories: {_eq: $category}}){
+    aggregate {
+      max{
+        order
+      }
+    }
+  }
+}
+`
 
 const query_order_by_health_num = gql`
 query MyQuery($health_num: String!) {
   orders_token(where: {health_num: {_eq: $health_num}}) {
     health_num
     order
+    categories
     p_id
     queued_at
   }
@@ -197,5 +205,20 @@ mutation MyMutation($bill_id: uuid!, $helth_num: String!, $p_id: uuid!, $payment
   }
 }
 `
-export {add_bills,query_patient_by_health_num,query_order_by_health_num,insert_orders,query_patient_history,query_orders,register_recieptionist,query_users,add_patients,register_doctors,query_recieptionist,register_admins,add_recieptionists,login,query_patients,query_doctors,insert_history};
+
+const query_patient_history_by_id = gql`
+query MyQuery($p_id: uuid!) {
+  history(where: {patient: {p_id: {_eq: $p_id}}}) {
+    diagnosis_date
+    diseases_name
+    doctor {
+      name
+      speciality
+    }
+    labratory_result
+    prescription
+  }
+}
+`
+export {query_patient_history_by_id,max_orders,add_bills,query_patient_by_health_num,query_order_by_health_num,insert_orders,query_patient_history,query_orders,register_recieptionist,query_users,add_patients,register_doctors,query_recieptionist,register_admins,add_recieptionists,login,query_patients,query_doctors,insert_history};
 

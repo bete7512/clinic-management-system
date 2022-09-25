@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { add_patients, insert_orders,insert_history } from '@/tools/query';
+import { add_patients,max_orders, insert_orders,insert_history } from '@/tools/query';
 import { provideApolloClient } from '@vue/apollo-composable';
 import apolloClient from './apolloclient'
 import router from '../router/index'
@@ -19,39 +19,59 @@ export const patientStore = defineStore("patient", {
                 })
                 console.log(result);
                 return
-            }catch (error) {
+            }
+            catch (error) {
                 console.log(error.message);
                 return error.message
             }
         },
-        async addorders(order, health_num, p_id) {
-            console.log(order + health_num + p_id);
+        async addorders(variables) {
+            console.log(variables);
             try {
+                const max_order = await apolloClient.query({
+                    query:max_orders,
+                    variables:{
+                        category:variables.category
+                    }
+                })
+                var order =  max_order.data.orders_token_aggregate.aggregate.max.order ? max_order.data.orders_token_aggregate.aggregate.max.order: 0;
+                console.log(order);
                 const result = await apolloClient.mutate({
                     mutation: insert_orders,
                     variables: {
-                        order: order,
-                        health_num: health_num,
-                        p_id: p_id
+                        order: ++order,
+                        health_num: variables.health_num,
+                        p_id: variables.p_id,
+                        categories:variables.category
                     }
                 })
                 console.log(result);
-            } catch (error) {
+            }
+            catch (error) {
                 console.log(error);
             }
         },
-        async addhistory(variables) {
+        async addhistory(variables){
+            console.log(variables);
+            console.log("we dont know about it");
             try {
                 const result = await apolloClient.mutate({
                     mutation: insert_history,
-                    variables
+                    variables:{
+                        diseases_name:variables.diseases_name,
+                        category:variables.category,
+                        h_id:variables.h_id,
+                        health_num:variables.health_num,
+                        labratory_result:JSON.stringify(variables.labratory_result.join('~~~')),
+                        patients:variables.patients,
+                        prescription:JSON.stringify(variables.prescription.join('~~~')),
+                    }
                 })
+
                 console.log(result);
                 return
             } catch(error){
-
-
-                
+                console.log(error);
             }
         }
     },

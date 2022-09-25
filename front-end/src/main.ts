@@ -21,7 +21,6 @@ app.component('admin-layout', layouta);
 app.component('recieptionist-layout', layoutr);
 app.component('doctor-layout', layoutd);
 app.component('empty-layout', emptylayout);
-
 app.use(pinia)
 app.use(router)
 app.mount('#app');

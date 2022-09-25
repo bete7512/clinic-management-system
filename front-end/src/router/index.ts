@@ -12,13 +12,15 @@ import patients from '@/components/authenticated/common/patients.vue'
 import user from '@/components/authenticated/admin/tasks/user.vue'
 import addbills from '@/components/authenticated/receptionist/tasks/addbills.vue'
 import addorders from '@/components/authenticated/receptionist/tasks/addorders.vue'
+// import printreciept from '@/components/authenticated/receptionist/tasks/printreciet.vue'
 import orders from '@/components/authenticated/common/orders.vue'
-import history from '@/components/authenticated/doctors/tasks/history.vue'
-import addhistory from '../components/authenticated/doctors/tasks/addhistory.vue'
+// import history from '@/components/authenticated/doctors/tasks/history.vue'
+// import addhistory from '../components/authenticated/doctors/tasks/addhistory.vue'
 import printprescrition from '@/components/authenticated/receptionist/tasks/printprescrition.vue'
 import printreciet from '@/components/authenticated/receptionist/tasks/printreciet.vue'
 import prepareprescription from '@/components/authenticated/receptionist/tasks/prepareprescrition.vue'
-
+import ordersVue from '../components/authenticated/doctors/tasks/orders.vue'
+import indiagnosis from '../components/authenticated/doctors/tasks/indiagnosis.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +33,14 @@ const router = createRouter({
 
     },
     {
-      path: '/doctors',
+      name:'In Diagnosis',
+      path:'/in_diagnosis/:id',
+      component:indiagnosis,
+      props:true,
+      meta: { layout: 'doctor' }
+    },
+    {
+      path: '/doctors/',
       name: 'doctors',
       component: doctors,
       meta:{layout:'doctor'},
@@ -39,24 +48,25 @@ const router = createRouter({
         {
           name: 'queue',
           path: '/queue_orders',
-          component: orders,
+          component: ordersVue,
           // meta: { layout: 'doctor' }
         },
-        {
+      
+        // {
     
-          name: 'history',
-          path: '/look_history',
-          component: history,
-          // meta:{layout:'doctor'}
+        //   name: 'history',
+        //   path: '/look_history',
+        //   component: history,
+        //   // meta:{layout:'doctor'}
     
-        },
-        {
+        // },
+        // {
     
-          name: 'addhistory',
-          path: '/addhistory',
-          component: addhistory,
-          // meta:{layout:'doctor'}
-        },
+        //   name: 'addhistory',
+        //   path: '/addhistory',
+        //   component: addhistory,
+        //   // meta:{layout:'doctor'}
+        // },
       ]
     },
     {
@@ -106,14 +116,14 @@ const router = createRouter({
           name: 'printreciet',
           path: '/print_reciet/:id',
           component: printreciet,
-          meta: { layout: 'recieptionist' }
+          // meta: { layout: 'recieptionist' }
     
         },
         {
           name: 'prepareprescrition',
           path: '/printprescription',
           component: prepareprescription,
-          meta: { layout: 'recieptionist' }
+          // meta: { layout: 'recieptionist' }
         },
       ]
     },

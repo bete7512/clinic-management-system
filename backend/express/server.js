@@ -2,9 +2,9 @@ const express = require('express')
 require('dotenv').config()
 const app = express();
 app.use(express.json({ limit: '200mb' }));
-app.get('/',(req,res)=>{
+app.get('/bete',(req,res)=>{
   res.json({
-    success:"wellcome"
+    success:"some body asked\n"
   })
 })
 app.post('/:route', (req, res) => {
