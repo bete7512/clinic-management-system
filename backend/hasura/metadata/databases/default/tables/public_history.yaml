@@ -25,9 +25,13 @@ insert_permissions:
       set:
         doctors: x-hasura-User-Id
       columns:
+        - category
+        - diagnosis_date
         - diseases_name
         - doctors
+        - finished
         - h_id
+        - health_num
         - labratory_result
         - patients
         - prescription
@@ -35,12 +39,7 @@ insert_permissions:
     permission:
       check: {}
       columns:
-        - diseases_name
-        - labratory_result
-        - prescription
-        - doctors
-        - h_id
-        - patients
+        - finished
 select_permissions:
   - role: admins
     permission:
@@ -55,27 +54,31 @@ select_permissions:
   - role: doctors
     permission:
       columns:
+        - category
+        - diagnosis_date
         - diseases_name
-        - labratory_result
-        - prescription
         - doctors
+        - finished
         - h_id
+        - health_num
+        - labratory_result
         - patients
+        - prescription
       filter: {}
   - role: recieptionists
     permission:
       columns:
-        - finished
+        - category
         - diagnosis_date
         - diseases_name
-        - labratory_result
-        - prescription
         - doctors
+        - finished
         - h_id
+        - health_num
+        - labratory_result
         - patients
-      filter:
-        finished:
-          _eq: false
+        - prescription
+      filter: {}
       allow_aggregations: true
 update_permissions:
   - role: admins

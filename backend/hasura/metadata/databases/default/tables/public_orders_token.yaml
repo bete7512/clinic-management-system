@@ -18,10 +18,11 @@ insert_permissions:
     permission:
       check: {}
       columns:
-        - queued_at
-        - order
+        - categories
         - health_num
+        - order
         - p_id
+        - queued_at
 select_permissions:
   - role: admins
     permission:
@@ -35,19 +36,21 @@ select_permissions:
   - role: doctors
     permission:
       columns:
-        - queued_at
-        - order
+        - categories
         - health_num
+        - order
         - p_id
+        - queued_at
       filter: {}
       allow_aggregations: true
   - role: recieptionists
     permission:
       columns:
-        - queued_at
-        - order
+        - categories
         - health_num
+        - order
         - p_id
+        - queued_at
       filter: {}
       allow_aggregations: true
 update_permissions:
