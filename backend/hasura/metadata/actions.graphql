@@ -1,94 +1,46 @@
 type Mutation {
+  fileupload(
+    name: String!
+    type: String!
+    base64str: String!
+  ): fileoutput
+}
+
+type Mutation {
   login(
-    objects: loginInput!
-  ): loginOutput
+    arg1: SignInput!
+  ): SignOutput
 }
 
 type Mutation {
-  signupa(
-    objects: signupaInput!
-  ): signupaOutput
+  register(
+    arg1: SignupInput!
+  ): SignupOutput
 }
 
-type Mutation {
-  signupd(
-    objects: signupdInput!
-  ): signupdOutput
-}
-
-type Mutation {
-  signupr(
-    objects: signuprInput!
-  ): signuprOutput
-}
-
-type Mutation {
-  updatepassword(
-    objects: updatepasswordInput!
-  ): updatepassowrdOutput
-}
-
-input loginInput {
+input SignInput {
   username: String!
   password: String!
 }
 
-input registerInput {
-  name: String!
+input SignupInput {
+  fname: String!
+  lname: String!
+  email: String!
   username: String!
   password: String!
-  phone: String!
-  address: String!
-  roles: String
 }
 
-input updatepasswordInput {
-  oldpassword: String!
-  newpassword: String!
-}
-
-input signupdInput {
-  name: String!
-  phone: String!
-  address: String!
-  speciality: String
-}
-
-input signuprInput {
-  name: String!
-  phone: String!
-  address: String!
-}
-
-input signupaInput {
-  name: String!
-  address: String!
-  phone: String!
-}
-
-type loginOutput {
+type SignOutput {
   accessToken: String!
   id: Int!
-  roles: String!
 }
 
-type registerOutput {
-  accessToken: String!
+type SignupOutput {
+  Success: String!
 }
 
-type updatepassowrdOutput {
-  success: String!
-}
-
-type signupdOutput {
-  success: String!
-}
-
-type signuprOutput {
-  success: String!
-}
-
-type signupaOutput {
-  success: String!
+type fileoutput {
+  file_path: String!
 }
 

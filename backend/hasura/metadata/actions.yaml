@@ -1,53 +1,31 @@
 actions:
+  - name: fileupload
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:4000/fileupload
+    permissions:
+      - role: user
   - name: login
     definition:
       kind: synchronous
       handler: http://host.docker.internal:3000/login
     permissions:
+      - role: user
       - role: anonymous
-      - role: recieptionists
-      - role: doctors
-      - role: admins
-  - name: signupa
+  - name: register
     definition:
       kind: synchronous
-      handler: http://host.docker.internal:3000/signupa
+      handler: http://host.docker.internal:3000/register
     permissions:
-      - role: admins
-  - name: signupd
-    definition:
-      kind: synchronous
-      handler: http://host.docker.internal:3000/signupd
-    permissions:
-      - role: admins
-  - name: signupr
-    definition:
-      kind: synchronous
-      handler: http://host.docker.internal:3000/signupr
-    permissions:
-      - role: admins
-  - name: updatepassword
-    definition:
-      kind: synchronous
-      handler: http://host.docker.internal:3000/updatepassword
-    permissions:
-      - role: doctors
-      - role: recieptionists
-      - role: admins
+      - role: anonymous
+      - role: user
 custom_types:
   enums: []
   input_objects:
-    - name: loginInput
-    - name: registerInput
-    - name: updatepasswordInput
-    - name: signupdInput
-    - name: signuprInput
-    - name: signupaInput
+    - name: SignInput
+    - name: SignupInput
   objects:
-    - name: loginOutput
-    - name: registerOutput
-    - name: updatepassowrdOutput
-    - name: signupdOutput
-    - name: signuprOutput
-    - name: signupaOutput
+    - name: SignOutput
+    - name: SignupOutput
+    - name: fileoutput
   scalars: []

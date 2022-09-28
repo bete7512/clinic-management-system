@@ -1,38 +1,102 @@
 table:
   name: users
   schema: public
+array_relationships:
+  - name: comments
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: comment
+          schema: public
+  - name: favorites
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: favorite
+          schema: public
+  - name: likes
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: likes
+          schema: public
+  - name: recipes
+    using:
+      foreign_key_constraint_on:
+        column: owner
+        table:
+          name: recipe
+          schema: public
+computed_fields:
+  - name: full_name
+    definition:
+      function:
+        name: user_full_name
+        schema: public
+  - name: users_counted_recipe
+    definition:
+      function:
+        name: user_recipe_counter
+        schema: public
 select_permissions:
-  - role: admins
-    permission:
-      columns:
-        - id
-        - isactive
-        - name
-        - password
-        - phone
-        - roles
-        - username
-      filter: {}
-      allow_aggregations: true
   - role: anonymous
     permission:
       columns:
-        - roles
+        - bios
+        - email
+        - fname
+        - id
+        - lname
+        - profile_image
+        - public_name
+        - username
+      computed_fields:
+        - full_name
+        - users_counted_recipe
       filter: {}
-update_permissions:
-  - role: admins
+      allow_aggregations: true
+  - role: user
     permission:
       columns:
-        - isactive
-        - name
-        - password
-        - roles
-        - username
+        - bios
+        - email
+        - fname
         - id
+        - lname
+        - password
+        - profile_image
+        - public_name
+        - username
+      computed_fields:
+        - full_name
+        - users_counted_recipe
       filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - bios
+        - email
+        - fname
+        - id
+        - lname
+        - password
+        - profile_image
+        - username
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
       check: null
+      set:
+        id: x-hasura-User-Id
 delete_permissions:
-  - role: admins
+  - role: user
     permission:
       backend_only: false
-      filter: {}
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
