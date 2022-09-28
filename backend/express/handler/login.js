@@ -3,7 +3,10 @@ require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const handler = async (req, res) => {
   console.log(req.body.input);
-  const { username, password } = req.body.input.objects;
+  // const { username, password } = req.body.input.objects;
+  console.log(req.body.input.objects);
+  const username = req.body.input.objects.username
+  const password = req.body.input.objects.password
   const finduser = require('../checker/findusername')
   const { data, error } = await finduser({username })
   const user = data["users"][0]

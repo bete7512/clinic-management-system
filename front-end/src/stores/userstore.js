@@ -51,7 +51,6 @@ export const userStore = defineStore("user", {
                 console.log(result);
                 return
             } catch (error) {
-                console.log(error);
                 return error.message
             }
         },
