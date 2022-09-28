@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div>
         <div id="reciet" ref="root">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -8,7 +8,6 @@
                         <th class="py-3 px-6"> Health Number</th>
                         <th class="py-3 px-6"> patient ID</th>
                         <th class="py-3 px-6"> date</th>
-                        
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +28,6 @@
                         <td class="py-4 px-6">order health_num</td>
                         <td class="py-4 px-6">order p_id</td>
                         <td class="py-4 px-6">order queued_at</td>
-                        
                     </tr> <tr class=" bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <td class="py-4 px-6">order patient.name</td>
                         <td class="py-4 px-6">order health_num</td>
@@ -91,4 +89,4 @@ const html = root.value?.innerHTML;
     doc.save("output.pdf")
     }
 
-</script>
+</script> -->
