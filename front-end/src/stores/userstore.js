@@ -35,6 +35,7 @@ export const userStore = defineStore("user", {
         },
         async login(username, password) {
             try {
+                console.log("am here");
                 const result = await apolloClient.mutate({
                     mutation: login,
                     variables: {
@@ -42,6 +43,7 @@ export const userStore = defineStore("user", {
                         password: password,
                     }
                 })
+                console.log(result);
                 localStorage.setItem("Apollotoken", result["data"]["login"]["accessToken"]);
                 this.username = username
                 this.userid = result.data.login.id
@@ -51,6 +53,7 @@ export const userStore = defineStore("user", {
                 console.log(result);
                 return
             } catch (error) {
+                console.log(error);
                 return error.message
             }
         },
