@@ -1,6 +1,6 @@
 version: 3
-endpoint: http://localhost:8080
+endpoint: https://bursting-bluebird-12.hasura.app
 metadata_directory: metadata
 actions:
   kind: synchronous
-  handler_webhook_baseurl: http://localhost:3000
+  handler_webhook_baseurl: https://clinic-management-system-jzd1.vercel.app/
