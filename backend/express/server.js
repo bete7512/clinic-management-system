@@ -8,14 +8,7 @@ app.get('/',(req,res)=>{
     success:"some body asked\n"
   })
 })
-app.post('/selam',(req,res)=>{
-  res.json({
-    try:"wellocome to the jungle",
-    success:"some body asked\n"
-  })
-})
 app.post('/:route', (req, res) => {
-  console.log(req.body);
   try {
     const handler = require(`./handler/${req.params.route}`);
     if (!handler) {

@@ -2,11 +2,7 @@ const bcrypt = require('bcrypt')
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const handler = async (req, res) => {
-  // console.log(req.body);
-  // const { username, password } = req.body;
-  // console.log(req.body.input.objects);
-  const username = req.body.input.objects.username
-  const password = req.body.input.objects.password
+  const {username,password} = req.body.input.objects
   const finduser = require('../checker/findusername')
   const { data, error } = await finduser({username })
   const user = data["users"][0]
@@ -24,7 +20,8 @@ const handler = async (req, res) => {
         message: "incorrect password"
       })
     }
-    console.log("s+j"+user.roles);
+    console.log("wowwwwwww"+user.roles);
+    console.log(process.env.SECRET_KEY);
     const token = jwt.sign({
       "https://hasura.io/jwt/claims":
       {
