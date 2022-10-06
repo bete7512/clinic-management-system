@@ -1,4 +1,6 @@
 require('dotenv').config()
+const fetch = require('node-fetch')
+
 const { v4: uuidv4 } = require('uuid')
 const bcrypt = require('bcrypt')
 const HASURA_SIGNUP_OPERATION = `

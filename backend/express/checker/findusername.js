@@ -1,3 +1,6 @@
+// const apolloclient = require('../apollo/apolloclient')
+const fetch = require('node-fetch')
+// console.log(apolloclient);
 const FIND_USER = `
 query finduser($username: String!){
     users(where: {username: {_eq: $username}}) {
@@ -22,7 +25,6 @@ const finduser = async (variables) => {
         variables
       })
     });
-  console.log('here is well')
   const data = await fetchResponse.json();
   return data;
 };
