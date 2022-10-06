@@ -11,11 +11,11 @@ query finduser($username: String!){
 require('dotenv').config()
 const finduser = async (variables) => {
   const fetchResponse = await fetch(
-    "http://localhost:8080/v1/graphql",
+    "https://bursting-bluebird-12.hasura.app/v1/graphql",
     {
       method: 'POST',
       headers: {
-        'x-hasura-admin-secret': 'myadminsecretkey'
+        'x-hasura-admin-secret': 'k6EMrk1TM5aPv472ddGMOe7XcIukW8n8ftDgTFKQzF5qbe7VG9O54RQhnabKEy4h'
       },
       body: JSON.stringify({
         query: FIND_USER,

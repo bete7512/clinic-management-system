@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <div>
         <div id="reciet" ref="root">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -16,13 +16,6 @@
                         <td class="py-4 px-6">order health_num</td>
                         <td class="py-4 px-6">order p_id</td>
                         <td class="py-4 px-6">order queued_at</td>
-                        
-                    </tr> <tr class=" bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                        <td class="py-4 px-6">order patient.name</td>
-                        <td class="py-4 px-6">order health_num</td>
-                        <td class="py-4 px-6">order p_id</td>
-                        <td class="py-4 px-6">order queued_at</td>
-                        
                     </tr> <tr class=" bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <td class="py-4 px-6">order patient.name</td>
                         <td class="py-4 px-6">order health_num</td>
@@ -33,13 +26,16 @@
                         <td class="py-4 px-6">order health_num</td>
                         <td class="py-4 px-6">order p_id</td>
                         <td class="py-4 px-6">order queued_at</td>
-                        
                     </tr> <tr class=" bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <td class="py-4 px-6">order patient.name</td>
                         <td class="py-4 px-6">order health_num</td>
                         <td class="py-4 px-6">order p_id</td>
                         <td class="py-4 px-6">order queued_at</td>
-                        
+                    </tr> <tr class=" bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <td class="py-4 px-6">order patient.name</td>
+                        <td class="py-4 px-6">order health_num</td>
+                        <td class="py-4 px-6">order p_id</td>
+                        <td class="py-4 px-6">order queued_at</td>
                     </tr> <tr class=" bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <td class="py-4 px-6">order patient.name</td>
                         <td class="py-4 px-6">order health_num</td>
@@ -65,7 +61,7 @@
         <button @click="generatepdf">generatepdf</button>
     </div>
 </template>
-<script setup lang="ts">
+<script setup >
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas'
 import { ref, onMounted } from 'vue';
@@ -77,7 +73,7 @@ const generatepdf = () => {
     const doc = new jsPDF()
     console.log("2 well");
 const html = root.value?.innerHTML;
-    doc.fromHTML(html,15,15,{
+    doc.fromHTML(html.html(),15,15,{
         width:200,
         font:12
     }
@@ -89,4 +85,4 @@ const html = root.value?.innerHTML;
     doc.save("output.pdf")
     }
 
-</script> -->
+</script>

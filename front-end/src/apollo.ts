@@ -8,12 +8,10 @@ const getHeaders = () => {
     return headers;
   };
 const httpLink = createHttpLink({
-    uri:'http://vivaminilik.tech:8080/v1/graphql',
+    uri:'https://bursting-bluebird-12.hasura.app/v1/graphql',
     fetch,
     headers:getHeaders()
 })
-
-
 const apolloclient = new ApolloClient({
     link:httpLink,
     cache:new InMemoryCache()
