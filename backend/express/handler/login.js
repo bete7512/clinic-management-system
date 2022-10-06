@@ -11,8 +11,6 @@ const handler = async (req, res) => {
       message: 'incorrect username or password please enter again'
     })
   }
-
-
   else {
     const value = await bcrypt.compareSync(password, user.password)
     if (!value) {
@@ -39,5 +37,4 @@ const handler = async (req, res) => {
     })
   }
 };
-
 module.exports = handler
