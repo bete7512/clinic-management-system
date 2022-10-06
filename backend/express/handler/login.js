@@ -2,9 +2,9 @@ const bcrypt = require('bcrypt')
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const handler = async (req, res) => {
-  console.log(req.body.input);
-  // const { username, password } = req.body.input.objects;
-  console.log(req.body.input.objects);
+  // console.log(req.body);
+  // const { username, password } = req.body;
+  // console.log(req.body.input.objects);
   const username = req.body.input.objects.username
   const password = req.body.input.objects.password
   const finduser = require('../checker/findusername')
@@ -15,6 +15,8 @@ const handler = async (req, res) => {
       message: 'incorrect username or password please enter again'
     })
   }
+
+
   else {
     const value = await bcrypt.compareSync(password, user.password)
     if (!value) {
@@ -40,4 +42,5 @@ const handler = async (req, res) => {
     })
   }
 };
+
 module.exports = handler
