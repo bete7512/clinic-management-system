@@ -7,6 +7,7 @@ app.get('/bete',(req,res)=>{
     success:"some body asked\n"
   })
 })
+
 app.post('/:route', (req, res) => {
   try {
     const handler = require(`./handler/${req.params.route}`);
